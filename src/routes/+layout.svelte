@@ -2,4 +2,6 @@
     import '../app.css';
 </script>
 
-<slot />
+<main class="min-h-screen bg-gray-100 p-4">
+    <slot />
+</main>
