@@ -1,5 +1,6 @@
 <script lang="ts">
-    export let value: string = '';
+    export let value: string;
+    export let name: string;
     export let placeholder: string;
     export let disabled: boolean = false;
 </script>
@@ -9,5 +10,6 @@
     placeholder="{placeholder}"
     type="text"
     disabled="{disabled}"
+    name="{name}"
     bind:value="{value}"
 />
