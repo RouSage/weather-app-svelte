@@ -14,7 +14,12 @@ export const actions = {
             const geocode = await api.getGeocode(location);
             const weather = await api.getWeather(geocode.lat, geocode.lon);
 
-            return { loc: location, weather: weather };
+            return {
+                loc: location,
+                weather: weather,
+                city: geocode.name,
+                country: geocode.country,
+            };
         } catch (e) {
             console.log('ERROR:', e);
             return fail(400, { loc: location, error: 'Something went wrong' });

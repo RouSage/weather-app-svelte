@@ -1,7 +1,8 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
-    import Button from '$lib/components/Button.svelte';
-    import Input from '$lib/components/Input.svelte';
+    import Button from '$lib/components/ui/Button.svelte';
+    import Input from '$lib/components/ui/Input.svelte';
+    import Weather from '$lib/components/Weather.svelte';
     import type { ActionData } from './$types';
 
     export let form: ActionData;
@@ -36,4 +37,12 @@
         </div>
         <Button text="Search" type="submit" disabled="{pending}" />
     </form>
+
+    {#if form?.weather && form?.city && form?.country}
+        <Weather
+            weather="{form.weather}"
+            city="{form.city}"
+            country="{form.country}"
+        />
+    {/if}
 </section>

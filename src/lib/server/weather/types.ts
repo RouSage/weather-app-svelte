@@ -17,7 +17,7 @@ export type Weather = {
         main: string;
         description: string;
         icon: string;
-    };
+    }[];
     base: string;
     main: {
         temp: number;
@@ -29,19 +29,19 @@ export type Weather = {
         sea_level: number;
         grnd_level: number;
         visibility: number;
-        wind: {
+        wind?: {
             speed: number;
             deg: number;
             gust: number;
         };
-        clouds: {
+        clouds?: {
             all: number;
         };
-        rain: {
+        rain?: {
             '1h'?: number;
             '3h'?: number;
         };
-        snow: {
+        snow?: {
             '1h'?: number;
             '3h'?: number;
         };

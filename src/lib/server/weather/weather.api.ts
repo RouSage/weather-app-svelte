@@ -23,7 +23,7 @@ export const getWeather = async (
     lon: number
 ): Promise<Weather> => {
     const resp = await fetch(
-        `${BASE_URL}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+        `${BASE_URL}/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
     );
     const data = await resp.json();
 
