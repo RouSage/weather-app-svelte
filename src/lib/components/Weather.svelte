@@ -2,9 +2,13 @@
     import type { Weather } from '$lib/server/weather/types';
     import MapPinIcon from './ui/icons/MapPinIcon.svelte';
 
-    export let weather: Weather;
-    export let city: string;
-    export let country: string;
+    interface Props {
+        weather: Weather;
+        city: string;
+        country: string;
+    }
+
+    let { weather, city, country }: Props = $props();
 </script>
 
 <section
@@ -12,7 +16,7 @@
 >
     <header class="flex flex-col items-center justify-between">
         <h2 class="text-2xl font-bold">{city}, {country}</h2>
-        <MapPinIcon props="{{ class: 'h-6 w-6 text-gray-499' }}" />
+        <MapPinIcon class="text-gray-499 size-6" />
     </header>
     <article class="grid grid-cols-2 gap-4 rounded bg-white p-4">
         <div class="flex flex-col items-center justify-center">
@@ -25,8 +29,8 @@
         </div>
         <div class="flex items-center justify-center">
             <img
-                alt="{weather.weather[0].description}"
-                src="{`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}"
+                alt={weather.weather[0].description}
+                src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                 class="h-24 w-24"
             />
         </div>

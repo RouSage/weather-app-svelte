@@ -5,9 +5,13 @@
     import Weather from '$lib/components/Weather.svelte';
     import type { ActionData } from './$types';
 
-    export let form: ActionData;
+    interface Props {
+        form: ActionData;
+    }
 
-    let pending = false;
+    let { form }: Props = $props();
+
+    let pending = $state(false);
 </script>
 
 <section class="mx-auto flex w-full max-w-2xl flex-col items-center gap-6">
@@ -15,34 +19,34 @@
     <form
         class="flex w-full max-w-md items-start gap-2"
         method="POST"
-        use:enhance="{() => {
+        use:enhance={() => {
             pending = true;
 
             return async ({ update }) => {
                 await update();
                 pending = false;
             };
-        }}"
+        }}
     >
         <div class="flex flex-1 flex-col gap-1">
             <Input
                 name="loc"
-                value="{form?.loc || ''}"
+                value={form?.loc || ''}
                 placeholder="Enter city or zip code"
-                disabled="{pending}"
+                disabled={pending}
             />
             {#if form?.error}
                 <p class="text-xs text-red-600">{form.error}</p>
             {/if}
         </div>
-        <Button text="Search" type="submit" disabled="{pending}" />
+        <Button text="Search" type="submit" disabled={pending} />
     </form>
 
     {#if form?.weather && form?.city && form?.country}
         <Weather
-            weather="{form.weather}"
-            city="{form.city}"
-            country="{form.country}"
+            weather={form.weather}
+            city={form.city}
+            country={form.country}
         />
     {/if}
 </section>
