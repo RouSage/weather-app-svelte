@@ -12,6 +12,13 @@ export const actions = {
 
         try {
             const geocode = await api.getGeocode(location);
+            if (!geocode) {
+                return fail(400, {
+                    loc: location,
+                    error: 'Location not found',
+                });
+            }
+
             const weather = await api.getWeather(geocode.lat, geocode.lon);
 
             return {
